@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hottest Restaurant</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="text-center">Hottest Restaurant</h1>
+      <h3 class="text-center"> Make your reservation! </h3>
+      <hr>
+      <div class="text-center"> 
+      	<a href="/"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
+      	<a href="/"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-home"></span></button></a>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Table Reservation</strong></h3>
+          </div>
+          <div class="panel-body">
+            <form method="POST" role="form">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+
+              <div class="form-group">
+                <label for="phone-number">Phone Number</label>
+                <input type="text" class="form-control" id="phone-number">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email">
+              </div>
+
+              <div class="form-group">
+                <label for="unique-id">Unique ID</label>
+                <input type="text" class="form-control" id="unique-id">
+              </div>
+
+            </form>
+            <br>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-plus-sign"></span> Add your table</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var newTable = {
+        name: $("#name").val().trim(),
+        number: $("#phone-number").val().trim(),
+        email: $("#email").val().trim(),
+        uniqueID: $("#unique-id").val().trim()
+      };
+
+      $.post("/api/new", newTable)
+      .done(function(data) {
+        console.log(data);
+        alert("Your table has been added");
+      });
+    });
+  </script>
+
+</body>
+</html>
