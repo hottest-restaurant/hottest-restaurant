@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hottest Restaurant</title>
+  <title>Hottest Reservation</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -13,12 +13,14 @@
 
   <div class="container">
     <div class="jumbotron">
-      <h1 class="text-center">Hottest Restaurant</h1>
-      <h3 class="text-center"> Make your reservation! </h3>
+      <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span>Hottest Restaurant</h1>
       <hr>
-      <div class="text-center"> 
-      	<a href="/"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
-      	<a href="/"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-home"></span></button></a>
+      <h2 class="text-center">Make your reservation</h2>
+      <br>
+
+      <div class="text-center">
+        <a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
+        <a href="/"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
       </div>
     </div>
     <div class="row">
@@ -80,6 +82,10 @@
       .done(function(data) {
         console.log(data);
         alert("Your table has been added");
+        $("#name").val("");
+        $("#phone-number").val("");
+        $("#email").val("");
+        $("#unique-id").val("");
       });
     });
   </script>
