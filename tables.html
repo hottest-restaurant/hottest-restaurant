@@ -5,7 +5,7 @@
   <title>Hottest Restaurant</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -54,3 +54,65 @@
 
 </body>
 </html>
+
+<script>
+$.get("/api/tables", function(data) {
+  console.log(data);
+
+  if(data.length <5)
+    var arrayLength = data.length
+  else
+    var arrayLength = 5;
+  for (var i = 0; i < arrayLength; i++) {
+
+    //create new container row tableWell
+      var divContainer = $("<div>");
+      divContainer.addClass("well")
+      var tableWellCount = "tableWell-0" + (i+1)
+      divContainer.attr("id", tableWellCount);
+
+      //create h2 tags
+      var h2 = $("<h2>");
+      //create spans
+      var span = $('<span class="label label-primary">')
+      //append h2 to table well
+      divContainer.append(h2)
+      //add the count of the data
+      span.html(i+1)
+
+      h2.append(span)
+      h2.append("| " + data[i].name)
+
+      $("#tableSection").append(divContainer)
+  }
+});
+
+$.get("/api/waitlist", function(data) {
+  console.log(data);
+  var counter = 0;
+  for (var i = 5; i < data.length; i++) {
+    counter++;
+    //create new container row tableWell
+      var divContainer = $("<div>");
+      divContainer.addClass("well")
+      var tableWellCount = "tableWell-0" + counter
+      divContainer.attr("id", tableWellCount);
+
+      //create h2 tags
+      var h2 = $("<h2>");
+      //create spans
+      var span = $('<span class="label label-primary">')
+      //append h2 to table well
+      divContainer.append(h2)
+      //add the count of the data
+      span.html(counter)
+
+      h2.append(span)
+      h2.append("| " + data[i].name)
+
+      $("#waitlistSection").append(divContainer)
+  }
+});
+
+
+</script>
